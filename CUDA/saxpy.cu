@@ -35,6 +35,8 @@ int main(void){
 
     saxpy<<<blocksPerGrid, threadsPerBlock>>>(N, 2.0f, d_x, d_y);
 
+    cudaDeviceSynchronize();
+
     cudaMemcpy(y, d_y, N*sizeof(float), cudaMemcpyDeviceToHost);
 
     float maxError = 0.0f;
